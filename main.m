@@ -1,15 +1,9 @@
 clear all;
-load('E:\MI_SI\data\cortex.mat');
-load('E:\MI_SI\data\Gain_edit2.mat');
-load('E:\MI_SI\data\Gain3_edit2.mat');
-% load('E:\MI_SI\data\Gain.mat');
-% load('E:\MI_SI\data\Gain3.mat');
-load('E:\MI_SI\data\Distance_6003.mat')
 VertConn1 = VariationEdge(Cortex.VertConn);
 n_sub=6;
 dt=500;
 [dc,ds] = size(Gain);
-Path = 'E:\BCI_data\hand\';
+Path = '';
 File = dir(fullfile(Path, '*.mat'));
 FileNames = {File.name};
 file_length = length(FileNames);
@@ -20,7 +14,7 @@ file_length = length(FileNames);
 LfvW = (mean(Gain.^2,1)).^0.5;
 Gain = Gain.*kron(ones(dc,1),1./LfvW);
 %% Whiten measurements and lead field matrix
-noice_Path = 'E:\MI_SI\data\rest_data.mat';
+noice_Path = '';
 [Cov_noise,W]=computed_noise(noice_Path);
 dc=size(W,1);
 EEGdata=zeros(n_sub*dc,dt);
@@ -200,7 +194,7 @@ MTWVSSI_barycenter=zeros(ds,15);
 sigma0=zeros(1,n_sub);
 b=[];
 fprintf('%s\n','-----------MTWVSSI--------------');
-%³¬²Î
+%Â³Â¬Â²ÃŽ
 MTWVSSI_lambda1=1e-3;
 MTWVSSI_lambda2=5;
 MTWVSSI_rho=1e5;
@@ -247,7 +241,6 @@ for i=1:30
         MTWVSSI_ev(1,j)=1 - norm(Y - Gain1*s_mtwvsi1,'fro')^2/norm(Y,'fro')^2;
         s_m(i,j,:)=sqrt(sum(s_mtwvsi1.*s_mtwvsi1,2))/ratio;
     end
-    save('E:\BCI_matlab\MI_WRA\matlab_elbow22.mat');
     if dx2<1e-5
         break;
     end
