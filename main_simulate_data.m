@@ -8,11 +8,9 @@ load([load_path,'Gain.mat']);% Lead-filed matrix
 load([load_path,'Gain3.mat']);
 load([load_path,'GridLoc.mat']);
 load([load_path,'Distance_6003.mat'],'D');
-%load([load_path,'scouts_all.mat']);%Destrieux分区
 load([load_path,'seed_all.mat']);%Destrieux分区
 load([load_path,'seed_simulate_all.mat']);
 VertConn1 = VariationEdge(Cortex.VertConn);
-sub_list=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16];
 n_subject=size(sub_list,2);
 ds=size(Cortex.Vertices,1);
 %%
@@ -163,7 +161,6 @@ for k=1:n
         L2L2L2_ev(1,sub) =  1 - norm(Y - L*S_L2L2L2,'fro')^2/norm(Y,'fro')^2;
     end
     clear Y L s_real ActiveVoxSeed seedvox Kernel par S_LORETA Roc Dic1 S_L2L2L2 S_wMNE R;
-    %  GL if beta > alpha, Dirty models are equivalent to a Group Lasso beta = 10 * alpha
     fprintf('%s\n','-----------GL-------------');
     S_GL=zeros(n_dic,ds,n_subject);
     lambda=1e-2;
