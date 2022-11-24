@@ -36,8 +36,6 @@ parfor j=1:n_subject
         %       tic;
         [s(:,j)]=update_s(L, Y,V,Z,U,eta1,eta2,rou,s1,dc1,ds,...
             R1,mu_gamma_lamb,mu_gamma_m);
-        %        toc;
-        %         disp(['运行时间�?',num2str(toc)]);
         s1=s(:,j);
         % z-update
         Z_old=Z;
@@ -64,26 +62,22 @@ parfor j=1:n_subject
         end
         
         %---------------- rou update ---------------------------------%
-%         if mod(k,10) == 0
-%             if r1_norm > 10 *  s1_norm
-%                 rou = 2*rou;
-%             elseif s1_norm > 10 * r1_norm
-%                 rou = rou/2;
-%             end
-%             if rou ~= rou_old
-%                 R1=dc1*LL+rou*VV;
-%                 fprintf('%s%f\t\n','rou:',rou);
-%             end
-%             rou_old = rou;
-%         end
+         if mod(k,10) == 0
+             if r1_norm > 10 *  s1_norm
+                 rou = 2*rou;
+            elseif s1_norm > 10 * r1_norm
+                 rou = rou/2;
+             end
+             if rou ~= rou_old
+                 R1=dc1*LL+rou*VV;
+                 fprintf('%s%f\t\n','rou:',rou);
+             end
+             rou_old = rou;
+         end
         
     end
     s_m(:,j)=sqrt(sum(s(:,j).*s(:,j),2));
 end
-% for jj=2:n_subject
-%     s(:,jj)=s(:,1);
-%     s_m(:,jj)=s_m(:,1);
-% end
 
 if all(any(s_m,1),1)
     fprintf('m--------\n')
