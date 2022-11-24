@@ -1,7 +1,7 @@
 clear;
 clc;
-load_path='E:\BCI_matlab\data\';
-save_path='E:\BCI_matlab\result3\result_16t\';
+load_path='';
+save_path='';
 %% % % ----------------------------62*6002--------------------------------%%
 load([load_path,'Cortex.mat']);% Cortex
 load([load_path,'Gain.mat']);% Lead-filed matrix
