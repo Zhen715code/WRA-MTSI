@@ -1,12 +1,12 @@
 clear all;
-load('E:\BCI_matlab\Epilepsy_ESI\data\cortex.mat');
-load('E:\BCI_matlab\Epilepsy_ESI\data\NoiseCov.mat');
-load('E:\BCI_matlab\Epilepsy_ESI\data\Distance_6002.mat');
+load('\cortex.mat');
+load('\NoiseCov.mat');
+load('\Distance_6002.mat');
 VertConn = VariationEdge(Cortex.VertConn);
 n_sub=4;
 dt=7;
 [dc,ds] = size(Gain);
-Path = 'E:\BCI_matlab\Epilepsy_ESI\data\sample_epilepsy\';%1„Ä?6„Ä?9„Ä?13„Ä?15„Ä?21
+Path = '\sample_epilepsy\';
 File = dir(fullfile(Path, '*.mat'));
 FileNames = {File.name};
 file_length = length(FileNames);
@@ -199,7 +199,7 @@ MTWVSSI_barycenter=zeros(ds,15);
 sigma0=zeros(1,n_sub);
 b=[];
 fprintf('%s\n','-----------MTWVSSI--------------');
-%Ë∂ÖÂèÇ
+%√®¬∂‚Ä¶√•¬è‚Äö
 MTWVSSI_lambda1=0.5;
 MTWVSSI_lambda2=5;
 MTWVSSI_rho=1e3;
@@ -240,7 +240,6 @@ for i=1:30
         MTWVSSI_ev(1,j)=1 - norm(Y - L*s_mtwvsi1,'fro')^2/norm(Y,'fro')^2;
         s_m(i,j,:)=sqrt(sum(s_mtwvsi1.*s_mtwvsi1,2))/ratio;
     end
-    save('F:\BCI_matlab\Epilepsy_ESI\matlab_7t34.mat');
     if dx2<1e-5
         break;
     end
