@@ -9,9 +9,7 @@ tol_ot = 1e-4;
 ABSTOL = 1e-4;
 RELTOL = 1e-2;
 MAX_ITER =300;
-
-fprintf('%5s\t%5s\t%14s\t%14s\t%14s\t%14s\n','sub', 'iter','r norm1', 'eps pri1','s norm1', 'eps dual1');
-CoreNum=2; %设定机器CPU核心数量
+CoreNum=6; %设定机器CPU核心数量
 if isempty(gcp('nocreate'))
     parpool(CoreNum);
 end
